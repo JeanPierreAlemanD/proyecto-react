@@ -1,0 +1,79 @@
+.content-title {
+  position: absolute;
+  width: 577px;
+  height: 173px;
+  top: 60px;
+  left: 70px;
+  z-index: 3;
+  text-align: left;
+}
+
+.img-fondo {
+  min-width: 390px;
+  min-height: 448px;
+}
+
+.content-description {
+  position: absolute;
+  text-align: left;
+  width: 545px;
+  top: 305px;
+  left: 80px;
+  line-height: 22px;
+  z-index: 3;
+}
+
+.container-button {
+  position: absolute;
+  width: 210px;
+  left: 80px;
+  top: 380px;
+  border-radius: 15px;
+  z-index: 3;
+  text-align: left;
+
+  & Button {
+    background-color: black;
+    border-radius: 60px;
+    width: 100%;
+  }
+}
+
+.content-number {
+  position: absolute;
+  left: 80px;
+  top: 435px;
+}
+
+.content-brands {
+  height: 122px;
+  background-color: black;
+  flex-direction: row;
+}
+
+/* 📱 Ajustes para pantallas pequeñas */
+@media (max-width: 640px) {
+  .content-title {
+    width: 315px;
+    height: 448px;
+    left: 20px;
+    top: 20px;
+  }
+
+  .content-description {
+    width: 358px;
+    left: 20px;
+    top: 160px;
+  }
+  .container-button {
+    top: 240px;
+    width: 360px;
+    text-align: left;
+    left: 20px;
+  }
+  .content-number {
+    /* position: absolute; */
+    /* left: 80px; */
+    top: 300px;
+  }
+}
