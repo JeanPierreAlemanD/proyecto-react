@@ -1,0 +1,6 @@
+/* estilo para foco por teclado */
+.category-item:focus {
+  outline: 2px solid #2563EB; /* azul brillante */
+  outline-offset: 2px;
+  background-color: #e0e7ff; /* fondo azul suave */
+}

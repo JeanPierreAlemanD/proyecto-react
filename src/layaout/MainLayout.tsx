@@ -7,7 +7,7 @@ const MainLayout = () => {
     return (
         <div>
             <HomePage></HomePage>
-            <ProductList title="New Arrivals" />
+            <ProductList title="New Arrivals"/>
         </div>
     );
 };

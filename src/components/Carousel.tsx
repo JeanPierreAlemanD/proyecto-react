@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import "@shared/style/components/carousel.css"
 
 interface CategoryCarouselProps {
     categories: string[];
@@ -12,6 +13,8 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ categories, onCateg
     const loopFactor = 5;  // Número de veces que duplicamos las categorías
 
     const repeatedCategories = Array(loopFactor).fill(categories).flat();
+
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
 
     const centerScroll = () => {
         const center = (categories.length * itemWidth) * Math.floor(loopFactor / 2);
@@ -42,6 +45,25 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ categories, onCateg
         }, 350); // Espera a que termine el scroll suave
     };
 
+    const handleCategoryClick = (category: string, index: number) => {
+        setSelectedCategory(category);
+        onCategoryClick?.(category);
+
+        // Centrar el item clicado
+        if (scrollRef.current) {
+            // Calculamos el índice real del elemento en el scroll (considerando la repetición)
+            // El index viene del repeatedCategories, entonces está bien para usar directo
+            const container = scrollRef.current;
+            const children = container.children;
+
+            if (index >= 0 && index < children.length) {
+                const el = children[index] as HTMLElement;
+                const scrollPosition = el.offsetLeft - (container.clientWidth / 2) + (el.clientWidth / 2);
+                container.scrollTo({ left: scrollPosition, behavior: "smooth" });
+            }
+        }
+    };
+
     return (
         <div className="w-[500px] mb-6 mx-auto">
             <p className="text-[20px] text-bolder p-4 text-center">Filtra por Categoria</p>
@@ -62,18 +84,23 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ categories, onCateg
                     ref={scrollRef}
                     className="flex overflow-hidden space-x-3 px-8"
                     style={{ whiteSpace: "nowrap" }} >
-                    {repeatedCategories.map((category, index) => (
-                        <span
-                            key={`${category}-${index}`}
-                            role="button"
-                            tabIndex={0}
-                            id={category.toLowerCase() + "-" + index}
-                            onClick={() => onCategoryClick?.(category)}
-                            className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-1 rounded-[5px] cursor-pointer text-sm border border-gray-300 flex-shrink-0 uppercase"
-                            style={{ minWidth: `${itemWidth - 10}px` }}>
-                            {category}
-                        </span>
-                    ))}
+                    {repeatedCategories.map((category, index) => {
+                        const isSelected = category === selectedCategory;
+
+                        return (
+                            <span
+                                key={`${category}-${index}`}
+                                role="button"
+                                tabIndex={0}
+                                id={category.toLowerCase() + "-" + index}
+                                onClick={() => handleCategoryClick(category, index)}
+                                className={`category-item bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-1 rounded-[5px] cursor-pointer text-sm border flex-shrink-0 uppercase
+                                  ${isSelected ? "border-blue-600 bg-blue-100 font-semibold" : "border-gray-300"}`}
+                                style={{ minWidth: `${itemWidth - 10}px` }}>
+                                {category}
+                            </span>
+                        );
+                    })}
                 </div>
 
                 {/* Botón derecho */}

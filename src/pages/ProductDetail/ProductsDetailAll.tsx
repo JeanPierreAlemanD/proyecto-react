@@ -1,22 +1,19 @@
 import Button from "@components/Button";
 import ImageGallery from "@components/ImagenGallery";
 import QuantitySelector from "@components/QuantitySelector";
-// import { ShoppingCartContext } from "@context/index";
+import { ShoppingCartContext } from "@context/index";
 import useFetch from "@hooks/useFetch";
-import { IResProductsAll } from "@models/productsAll";
-import { useState } from "react";
-// import {  useState } from "react";
+import { IProductoCarrito } from "@models/IProductsDetails";
+import { Category, IResProductsAll } from "@models/productsAll";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
 function ProductDetailAll() {
     const { id } = useParams<{ id: string }>();
     const { data: productAll, loading, error } = useFetch<IResProductsAll>(`https://api.escuelajs.co/api/v1/products/${id}`);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [cantidad, setCantidad] = useState<number>(1);
-    // const context = useContext(ShoppingCartContext);
-
-
+    const { CartProducts, setCartProducts } = useContext(ShoppingCartContext);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -50,11 +47,29 @@ function ProductDetailAll() {
                     <div className="separador mt-3"></div>
                     <div className="flex flex-row mt-4 items-center gap-4">
                         <QuantitySelector onQuantityChange={(qty) => setCantidad(qty)} ></QuantitySelector>
-                        <Button label="Añadir al carrito" variant="primary" className="bg-black text-white px-4 py-2 rounded ml-4 radius-40"></Button>
+                        <Button label="Añadir al carrito" variant="primary" className="bg-black text-white px-4 py-2 rounded ml-4 radius-40"
+                            onClick={() => {
+                                const productoCarrito: IProductoCarrito = {
+                                    id: productAll.id,
+                                    title: productAll.title,
+                                    price: productAll.price,
+                                    description: productAll.description,
+                                    category: productAll.category as Category,
+                                    image: productAll.images[0],
+                                    rating: {
+                                        rate: 5,
+                                        count: 1,
+                                    },
+                                    talla: "M",
+                                    cantidad: cantidad,
+                                };
+                                setCartProducts([...CartProducts, productoCarrito]);
+                            }}
+                        ></Button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
