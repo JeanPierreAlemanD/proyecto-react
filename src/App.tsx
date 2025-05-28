@@ -1,19 +1,17 @@
 import './App.css'
 import Footer from './layaout/Footer';
-import ProductList from './features/products/productList';
 import Header from './layaout/Header';
-import Home from './layaout/home';
-import { Category } from './models/product';
+import { Outlet } from 'react-router-dom';
+
 
 function App() {
 
   return (
-    <div className=" w-full">
+    <div className="min-h-screen w-full">
       <Header />
-      <Home />
-      <ProductList title='New Arrivals' />
-      <ProductList title='Womens Clothing' category={Category.WomensClothing} />
-      <ProductList title='Jewelery' category={Category.Jewelery} />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

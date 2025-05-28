@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../../core/services/productService";
-import { Category, IResProducts } from "../../models/product";
-import Cards from "../../components/Cards";
-import Button from "../../components/Button";
+
+import { Category, IResProducts } from "@models/product";
+import Cards from "@components/Cards";
+import Button from "@components/Button";
+import useFetch from "@hooks/useFetch";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface ProductsListProps {
     category?: Category;
@@ -10,20 +12,20 @@ interface ProductsListProps {
 }
 
 const ProductList = ({ category, title }: ProductsListProps) => {
-    const [products, setProducts] = useState<IResProducts[]>([]);
+    const { data: products, loading, error } = useFetch<IResProducts[]>("https://fakestoreapi.com/products");
     const [showAll, setShowAll] = useState<boolean>(false);
 
-    useEffect(() => {
-        getProducts().then((res) => {
-            const filteredProducts = category
-                ? res.filter(product => product.category === category)
-                : res;
-            setProducts(filteredProducts);
-        }
-        );
-    }, [category]);
+    const filteredProducts = useMemo(() => {
+        return category
+            ? (products || []).filter(product => product.category === category)
+            : (products || []);
+    }, [products, category]);
 
-    const displayedProducts = showAll ? products : products.slice(0, 4);
+
+    if (loading) return <p>Cargando productos...</p>;
+    if (error) return <p>Error al cargar los productos: {error.message}</p>;
+
+    const displayedProducts = showAll ? filteredProducts : filteredProducts.slice(0, 4);
     return (
         <div>
             <p className="uppercase font-bold text-[48px] p-5">{title}</p>
@@ -31,7 +33,7 @@ const ProductList = ({ category, title }: ProductsListProps) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
                     {displayedProducts.length > 0 ? (
                         displayedProducts.map((product) => (
-                            <a href={`product/${product.id}`} key={product.id} className="w-full">
+                            <Link to={`/product/${product.id}`} key={product.id} className="w-full">
                                 <Cards
                                     key={product.id}
                                     title={product.title}
@@ -39,13 +41,13 @@ const ProductList = ({ category, title }: ProductsListProps) => {
                                     image={product.image}
                                     rating={product.rating}
                                     onClick={() => console.log('click')} />
-                            </a>
+                            </Link>
                         ))
                     ) : (
                         <p className="col-span-full">Cargando productos...</p>
                     )}
                 </div>
-                {products.length > 4 && (
+                {filteredProducts.length > 4 && (
                     <div className="flex justify-center mt-6">
                         <Button
                             size="md"

@@ -20,7 +20,7 @@ function Button({
     onClick,
     ...rest
 }: ButtonProps) {
-    const baseClass = 'px-4 py-2 rounded font-sembold';
+    const baseClass = 'px-4 py-2 rounded font-sembold cursor-pointer';
     const sizeClass = {
         sm: 'text-sm py-1 px-2',
         md: 'text-md py-2 px-4',
@@ -34,6 +34,7 @@ function Button({
         lg: 'w-48',    // 192px aprox
         xl: 'w-56',    // 224px aprox
     }[width];
+
     const variantClass = {
         primary: 'bg-black-500 text-white hover:bg-black-600',
         secondary: 'bg-gray-500 text-white hover:bg-gray-600',

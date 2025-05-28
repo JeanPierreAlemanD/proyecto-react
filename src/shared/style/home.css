@@ -9,8 +9,10 @@
 }
 
 .img-fondo {
-  min-width: 390px;
-  min-height: 448px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
 }
 
 .content-description {

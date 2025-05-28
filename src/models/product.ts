@@ -1,11 +1,11 @@
 export interface IResProducts {
-    id:          number;
-    title:       string;
-    price:       number;
-    description: string;
-    category:    Category;
-    image:       string;
-    rating:      Rating;
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: Category;
+  image: string;
+  rating: Rating;
 }
 
 export enum Category {
@@ -15,6 +15,8 @@ export enum Category {
   Electronics = "electronics"
 }
 export interface Rating {
-    rate:  number;
-    count: number;
+  rate: number;
+  count: number;
 }
+
+

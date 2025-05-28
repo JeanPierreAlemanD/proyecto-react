@@ -1,14 +1,12 @@
-// import Container from "./Container";
-import fondo from "../assets/home.svg";
-import fondoMobile from "../assets/home-mob.svg";
-import '../shared/style/home.css';
-
-import versace from "../assets/image/marcas/versace.svg";
-import zara from "../assets/image/marcas/zara.svg";
-import gucci from "../assets/image/marcas/gucci.svg";
-import prada from "../assets/image/marcas/prada.svg";
-import calvin from "../assets/image/marcas/calvin.svg";
-import Button from "../components/Button";
+import fondo from "@assets/home.svg";
+import fondoMobile from "@assets/home-mob.svg";
+import versace from '@assets/image/marcas/versace.svg';
+import zara from '@assets/image/marcas/zara.svg';
+import gucci from '@assets/image/marcas/gucci.svg';
+import prada from '@assets/image/marcas/prada.svg';
+import calvin from '@assets/image/marcas/calvin.svg';
+import Button from "@components/Button";
+import '@shared/style/home.css';
 
 const brandLogos = [
     { src: versace, alt: 'versace' },
@@ -18,17 +16,20 @@ const brandLogos = [
     { src: calvin, alt: 'calvin klein' },
 ];
 
-function Home() {
+function HomePage() {
     return (
         <div className="w-full">
-            <div className="relative w-full flex items-center items-center justify-center min-h-screen">
-                <picture className="absolute inset-0 -z-10 w-full h-full">
-                    <source media="(max-width: 640px)" srcSet={fondoMobile} />
-                    <img
-                        className="img-fondo w-full h-full object-cover absolute top-0 left-0 -z-10"
-                        src={fondo}
-                        alt="home"/>
-                </picture>
+            <div className="relative w-full flex items-center justify-center min-h-screen">
+                <div className="flex-1 relative min-h-screen">
+                    <picture className="absolute inset-0 -z-10 w-full h-full">
+                        <source media="(max-width: 640px)" srcSet={fondoMobile} />
+                        <img
+                            className="img-fondo w-full h-full object-cover -z-10"
+                            src={fondo}
+                            alt="home" />
+                    </picture>
+                </div>
+
                 <div className="z-10 text-center text-black max-w-3xl">
                     <div className="content-title">
                         <p className="uppercase font-bold text-4xl sm:text-[36px] md:text-6xl lg:text-[64px] leading-tight mb-4">Find Clothes That Matches your style</p>
@@ -65,4 +66,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default HomePage;
