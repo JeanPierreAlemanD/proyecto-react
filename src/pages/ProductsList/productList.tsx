@@ -53,7 +53,7 @@ const ProductList = ({ category, title }: ProductsListProps) => {
                             size="md"
                             width="lg"
                             label={showAll ? "Ver menos " : "Ver más"}
-                            className="border rounded-full border-black text-black bg-transparent hover:bg-black hover:text-white py-2 px-4 rounded transition"
+                            className="border rounded-full border-black text-black bg-transparent hover:bg-black hover:text-white py-2 px-4 transition"
                             variant="tertiary"
                             onClick={() => setShowAll(!showAll)}
                         />

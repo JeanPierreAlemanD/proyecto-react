@@ -11,8 +11,8 @@ import { ShoppingCartContext } from "@context/index";
 
 const menuItems: IMenuItem[] = [
     { title: 'Home', url: '/' },
-    { title: 'On Sale', url: '/on-sale' },
-    { title: 'New Arrivals', url: '/new-arrivals' },
+    { title: 'On Sale', url: '/onSale' },
+    { title: 'New Arrivals', url: '/newArrivals' },
     { title: 'Brands', url: '/brands' },
 ]
 

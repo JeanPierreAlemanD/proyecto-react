@@ -15,7 +15,7 @@ const SummarryCartList: React.FC<SummaryCartListProps> = ({
     removeProduct,
 }) => {
     return (
-        <ul className="flex-1 space-y-4 max-h-[500px] overflow-y-auto">
+        <ul className="flex-1 space-y-4 max-h-[450px] overflow-y-auto">
             {products.map((producto, index) => (
                 <li key={index}
                     className="relative border p-4 rounded shadow flex items-center space-x-6" >
@@ -36,10 +36,10 @@ const SummarryCartList: React.FC<SummaryCartListProps> = ({
                     />
 
                     {/* Detalle en el centro */}
-                    <div className="flex-1">
+                    <div className="flex-1 text-left">
                         <h2 className="text-lg font-semibold">{producto.title}</h2>
-                        <p>Precio: ${producto.price.toFixed(2)}</p>
-                        <p>Size: {producto.talla}</p>
+                        <p >Size: {producto.talla}</p>
+                        <p >Precio: ${producto.price.toFixed(2)}</p>
                     </div>
 
                     {/* Cantidad abajo a la derecha */}

@@ -5,6 +5,7 @@ interface CardProps {
     description?: string;
     price: number;
     image: string;
+    category?: string
     onClick?: () => void;
     rating?: {
         rate?: number
@@ -12,7 +13,7 @@ interface CardProps {
     }
 }
 
-function Cards({ title, price, image, rating, onClick }: CardProps) {
+function Cards({ title, price, image, description, rating, onClick }: CardProps) {
 
 
     return <div onClick={onClick} className='rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition duration-300 w-[290px] sm:w-[180px] md:w-[220px] lg:w-[245px]'>
@@ -29,6 +30,7 @@ function Cards({ title, price, image, rating, onClick }: CardProps) {
                 {/* <span className="text-gray-600 text-sm ml-2">({rating?.count ?? 0})</span> */}
             </div>
             <p className="sm:text-[20px] lg:text-[24px] text-gray-600 font-bold line-clamp-3 mb-4 text-left">${price}</p>
+            <p className="sm:text-[10px] lg:text-[14px] text-black-600 font-bold line-clamp-3 mb-4 text-left">{description}</p>
         </div>
     </div>
 }

@@ -7,6 +7,7 @@ import prada from '@assets/image/marcas/prada.svg';
 import calvin from '@assets/image/marcas/calvin.svg';
 import Button from "@components/Button";
 import '@shared/style/home.css';
+import { Link } from "react-router-dom";
 
 const brandLogos = [
     { src: versace, alt: 'versace' },
@@ -38,7 +39,9 @@ function HomePage() {
                         <p className="text-[13px] sm:text-[14px] lg:text-[16px]">Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
                     </div>
                     <div className="container-button">
-                        <Button size="lg" variant="primary" label="Shop Now"> </Button>
+                        <Link to="/OnSale">
+                            <Button size="lg" variant="primary" label="Shop Now"> </Button>
+                        </Link>
                     </div>
 
                     <div className="content-number grid sm:grid grid-cols-3 lg:grid-cols-3 gap-4">
