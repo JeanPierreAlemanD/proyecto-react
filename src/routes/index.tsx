@@ -6,7 +6,7 @@ import { lazy, Suspense } from "react";
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../layaout/MainLayout"));
 const ProductDetail = lazy(() => import("../pages/ProductDetail/ProductDetail"));
-const ProductDetailAll = lazy(() => import("../pages/ProductDetail/ProductsDetailAll"));
+const ProductDetailAll = lazy(() => import("../pages/ProductDetailAll/ProductsDetailAll"));
 const NewArrivals = lazy(() => import("../pages/NewArrivals"));
 const Brands = lazy(() => import("../pages/Brands"));
 const CartProducts = lazy(() => import("../pages/CartProducts"));
