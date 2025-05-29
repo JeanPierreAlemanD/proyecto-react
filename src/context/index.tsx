@@ -20,7 +20,7 @@ const STORAGE_KEY = "cart_products";
 export const ShoppingCartProvider = ({ children }: ShoppingCartProvidersProps) => {
     const [CartProducts, setCartProducts] = useState<IProductoCarrito[]>(() => {
         try {
-            const storedProducts = localStorage.getItem('cart_products');
+            const storedProducts = localStorage.getItem(STORAGE_KEY);
             return storedProducts ? JSON.parse(storedProducts) : [];
         } catch (error) {
             console.error("Error al cargar los productos del carrito desde localStorage:", error);

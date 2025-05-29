@@ -39,8 +39,14 @@ const Header = () => {
                         </div>
                         {/* Iconos */}
                         <div className="md:hidden flex gap-2">
-                            <div className="p-3">
-                                <FiShoppingCart size={20} className="cursor-pointer" />
+                            <div className="relative p-3">
+                                <Link rel="stylesheet" to="/cart" >
+                                    {totalItem > 0 && (
+                                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                                            {totalItem}
+                                        </span>)}
+                                    <FiShoppingCart size={20} className="cursor-pointer" />
+                                </Link>
                             </div>
                             <div className="p-3">
                                 <FileUser size={20} className="cursor-pointer" />
@@ -60,7 +66,7 @@ const Header = () => {
                     <input
                         type="text"
                         placeholder="Buscar..."
-                        className="md:w-[240px] lg:w-[570px] pl-10 pr-4 py-2 bg-gray-100 rounded-full text-sm focus:outline-none"
+                        className="md:w-[240px] lg:w-[570px] pl-6 pr-4 py-2 bg-gray-100 rounded-full text-sm focus:outline-none"
                     />
                 </div>
 

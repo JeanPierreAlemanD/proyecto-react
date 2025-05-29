@@ -49,13 +49,10 @@ const CategoryCarousel: React.FC<CategoryCarouselProps> = ({ categories, onCateg
         setSelectedCategory(category);
         onCategoryClick?.(category);
 
-        // Centrar el item clicado
+
         if (scrollRef.current) {
-            // Calculamos el índice real del elemento en el scroll (considerando la repetición)
-            // El index viene del repeatedCategories, entonces está bien para usar directo
             const container = scrollRef.current;
             const children = container.children;
-
             if (index >= 0 && index < children.length) {
                 const el = children[index] as HTMLElement;
                 const scrollPosition = el.offsetLeft - (container.clientWidth / 2) + (el.clientWidth / 2);
